@@ -41,6 +41,8 @@ Enquanto o protocolo estiver aberto, as mensagens do cliente são repassadas ao 
 | `src/store.ts` | Conversas e protocolos (arquivo JSON em `data/`) |
 | `empresa.md` | **Dados da empresa que a IA usa nas respostas — preencha!** |
 | `docs/CONFIGURAR-META.md` | Passo a passo para criar o app na Meta e pegar as credenciais |
+| `docs/DEPLOY-RAILWAY.md` | Passo a passo para colocar o agente na nuvem (Railway) |
+| `Dockerfile`, `railway.json` | Configuração usada pela Railway para montar e rodar o agente |
 
 ## Rodar no computador
 
@@ -62,14 +64,17 @@ npx cloudflared tunnel --url http://localhost:3000
 
 Use a URL gerada + `/webhook` no painel da Meta (passo 5 do guia).
 
-## Colocar no ar (produção)
+## Colocar no ar (nuvem)
 
-Qualquer serviço que rode Node.js com HTTPS serve (Railway, Render, Fly.io, uma VPS etc.):
+O projeto já vem pronto para a **Railway** (`Dockerfile` + `railway.json`).
+Siga o passo a passo em **[docs/DEPLOY-RAILWAY.md](docs/DEPLOY-RAILWAY.md)**.
 
-- Comando de build: `npm install && npm run build`
-- Comando de start: `npm start`
-- Configure as variáveis do `.env.example` no painel do serviço.
-- **Importante:** os protocolos ficam em `data/banco.json`. Use um disco persistente (volume) ou o histórico se perde a cada deploy. Para volume maior, troque o `Store` por um banco de dados (PostgreSQL, por exemplo).
+Ordem recomendada:
+1. `docs/CONFIGURAR-META.md`, passos 1 a 4 (credenciais da Meta)
+2. `docs/DEPLOY-RAILWAY.md` (sobe o agente e gera o endereço)
+3. `docs/CONFIGURAR-META.md`, passos 5 a 7 (webhook, template e produção)
+
+Os protocolos ficam em `data/banco.json`. Na Railway, esse arquivo vai para um Volume montado em `/app/data`. Para volume maior, troque o `Store` por um banco de dados (PostgreSQL, por exemplo).
 
 ## Personalizar
 
