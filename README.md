@@ -85,5 +85,6 @@ Os protocolos ficam em `data/banco.json`. Na Railway, esse arquivo vai para um V
 
 ## Custos
 
-- **Meta:** respostas a clientes dentro de 24h da última mensagem deles são gratuitas; mensagens de template (como o aviso aos atendentes) são cobradas. Confira a tabela atual da Meta.
+- **Meta:** respostas a clientes dentro de 24h da última mensagem deles são gratuitas; mensagens de template (como o aviso aos atendentes) são cobradas. Confira a tabela atual da Metas.
+  
 - **Anthropic:** cobrança por tokens. O *prompt* fixo usa cache, o que deixa as mensagens seguintes mais baratas.
